@@ -96,11 +96,12 @@ resource "aws_nat_gateway" "nat_public2_us_east_1b" {
 
 # Create Elastic IPs for NAT Gateways
 resource "aws_eip" "nat_eip_public1_us_east_1a" {
-  vpc = true
+  domain = "vpc"
 }
 
+
 resource "aws_eip" "nat_eip_public2_us_east_1b" {
-  vpc = true
+  domain = "vpc"
 }
 
 # Associate Route Tables with Subnets
