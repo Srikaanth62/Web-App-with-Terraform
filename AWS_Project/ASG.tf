@@ -79,7 +79,7 @@ resource "aws_lb_listener_rule" "rule" {
 
   condition {
     host_header {
-      values = var.dns_name
+      values = toset([var.dns_name])
     }
   }
 }
