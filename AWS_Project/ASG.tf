@@ -31,7 +31,9 @@ resource "aws_autoscaling_group" "asg" {
     version = "$Latest"
   }
   tags = {
-    Name = "asg_tags"
+    Name        = "asg"
+    Environment = "dev"
+    // Add other tags as needed
   }
 
 #  dynamic "tag" {
