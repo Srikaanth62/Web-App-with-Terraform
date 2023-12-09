@@ -70,7 +70,7 @@ resource "aws_lb_target_group" "main" {
 
 resource "aws_lb_listener_rule" "rule" {
   listener_arn = aws_lb_listener.main.arn
-  priority     = var.listener_priority
+  priority     = 100
 
   action {
     type             = "forward"
@@ -78,8 +78,9 @@ resource "aws_lb_listener_rule" "rule" {
   }
 
   condition {
-    field  = "host-header"
-    values = ["dev.example.com"]  # Replace "example.com" with your domain
+    host_header {
+      values = ["dev.example.com"]
+    }
   }
-  }
+}
 
