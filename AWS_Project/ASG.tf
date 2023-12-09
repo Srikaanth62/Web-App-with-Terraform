@@ -78,8 +78,8 @@ resource "aws_lb_listener_rule" "rule" {
   }
 
   condition {
-    host_header {
-      values = toset([var.dns_name])
-    }
+    field  = "host-header"
+    values = ["dev.example.com"]  # Replace "example.com" with your domain
   }
-}
+  }
+
