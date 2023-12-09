@@ -30,11 +30,11 @@ resource "aws_autoscaling_group" "asg" {
     id      = aws_launch_template.template.id
     version = "$Latest"
   }
-  tags = {
-    Name        = "asg"
-    Environment = "dev"
-    // Add other tags as needed
-  }
+#  tags = {
+#    Name        = "asg"
+#    Environment = "dev"
+#    // Add other tags as needed
+#  }
 
 #  dynamic "tag" {
 #    for_each = local.asg_tags
