@@ -1,44 +1,4 @@
-resource "aws_security_group" "wordpress_sg" {
-  name        = "wordpress-sg"
-  description = "wordpress-sg"
-  vpc_id      = aws_vpc.srikaanth_vpc.id
 
-  ingress {
-    description = "APP"
-    from_port   = var.app_port
-    to_port     = var.app_port
-    protocol    = "tcp"
-    cidr_blocks = "public"
-  }
-
-#  ingress {
-#    description = "SSH"
-#    from_port   = 22
-#    to_port     = 22
-#    protocol    = "tcp"
-#    cidr_blocks = ["172.31.13.238/32"]
-#  }
-#
-#  ingress {
-#    description = "PROMETHEUS"
-#    from_port   = 9100
-#    to_port     = 9100
-#    protocol    = "tcp"
-#    cidr_blocks = ["172.31.12.74/32"]
-#  }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  tags = {
-    Name = "wordpress-sg"
-  }
-}
 
 
 resource "aws_launch_template" "template" {
@@ -104,12 +64,10 @@ resource "aws_lb_target_group" "main" {
   }
 }
 
-resource "aws_lb_listener" "wordpress-lb" {
-  # Other parameters
-}
+
 
 resource "aws_lb_listener_rule" "rule" {
-  listener_arn = aws_lb_listener.wordpress-lb.arn
+  listener_arn = aws_lb_listener.main.arn
   priority     = var.listener_priority
 
   action {
