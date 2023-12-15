@@ -35,6 +35,7 @@ resource "aws_subnet" "private_subnet_1b" {
   availability_zone = "us-east-1b"
 }
 
+
 # Internet Gateway
 resource "aws_internet_gateway" "project_igw" {
   vpc_id = aws_vpc.project_vpc.id
