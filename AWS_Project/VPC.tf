@@ -58,6 +58,7 @@ resource "aws_nat_gateway" "nat_gateway_1a" {
 
 resource "aws_eip" "nat_eip_1a" {
   vpc = true
+  domain   = "vpc"
 }
 
 resource "aws_nat_gateway" "nat_gateway_1b" {
@@ -67,6 +68,7 @@ resource "aws_nat_gateway" "nat_gateway_1b" {
 
 resource "aws_eip" "nat_eip_1b" {
   vpc = true
+  domain   = "vpc"
 }
 
 # Route Tables for private subnets
