@@ -4,7 +4,7 @@
 #}
 
 # VPC creation
-resource "aws_vpc" "project_vpc" {
+resource "aws_vpc" "srikaanth_vpc" {
   cidr_block       = "10.0.0.0/16"
   enable_dns_support = true
   enable_dns_hostnames = true
@@ -12,25 +12,25 @@ resource "aws_vpc" "project_vpc" {
 
 # Subnets creation
 resource "aws_subnet" "public_subnet_1a" {
-  vpc_id            = aws_vpc.project_vpc.id
+  vpc_id            = aws_vpc.srikaanth_vpc.id
   cidr_block        = "10.0.0.0/20"
   availability_zone = "us-east-1a"
 }
 
 resource "aws_subnet" "private_subnet_1a" {
-  vpc_id            = aws_vpc.project_vpc.id
+  vpc_id            = aws_vpc.srikaanth_vpc.id
   cidr_block        = "10.0.128.0/20"
   availability_zone = "us-east-1a"
 }
 
 resource "aws_subnet" "public_subnet_1b" {
-  vpc_id            = aws_vpc.project_vpc.id
+  vpc_id            = aws_vpc.srikaanth_vpc.id
   cidr_block        = "10.0.16.0/20"
   availability_zone = "us-east-1b"
 }
 
 resource "aws_subnet" "private_subnet_1b" {
-  vpc_id            = aws_vpc.project_vpc.id
+  vpc_id            = aws_vpc.srikaanth_vpc.id
   cidr_block        = "10.0.144.0/20"
   availability_zone = "us-east-1b"
 }
@@ -38,12 +38,12 @@ resource "aws_subnet" "private_subnet_1b" {
 
 # Internet Gateway
 resource "aws_internet_gateway" "project_igw" {
-  vpc_id = aws_vpc.project_vpc.id
+  vpc_id = aws_vpc.srikaanth_vpc.id
 }
 
 # Route Tables
 resource "aws_route_table" "public_route_table" {
-  vpc_id = aws_vpc.project_vpc.id
+  vpc_id = aws_vpc.srikaanth_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -74,7 +74,7 @@ resource "aws_eip" "nat_eip_1b" {
 
 # Route Tables for private subnets
 resource "aws_route_table" "private_route_table_1a" {
-  vpc_id = aws_vpc.project_vpc.id
+  vpc_id = aws_vpc.srikaanth_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -83,7 +83,7 @@ resource "aws_route_table" "private_route_table_1a" {
 }
 
 resource "aws_route_table" "private_route_table_1b" {
-  vpc_id = aws_vpc.project_vpc.id
+  vpc_id = aws_vpc.srikaanth_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
