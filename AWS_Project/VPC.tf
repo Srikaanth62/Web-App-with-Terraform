@@ -11,25 +11,25 @@ resource "aws_vpc" "srikaanth_vpc" {
 }
 
 # Subnets creation
-resource "aws_subnet" "public_subnet_1a" {
+resource "aws_subnet" "subnet_public1_us_east_1a" {
   vpc_id            = aws_vpc.srikaanth_vpc.id
   cidr_block        = "10.0.0.0/20"
   availability_zone = "us-east-1a"
 }
 
-resource "aws_subnet" "private_subnet_1a" {
+resource "aws_subnet" "subnet_private1_us_east_1a" {
   vpc_id            = aws_vpc.srikaanth_vpc.id
   cidr_block        = "10.0.128.0/20"
   availability_zone = "us-east-1a"
 }
 
-resource "aws_subnet" "public_subnet_1b" {
+resource "aws_subnet" "subnet_public2_us_east_1b" {
   vpc_id            = aws_vpc.srikaanth_vpc.id
   cidr_block        = "10.0.16.0/20"
   availability_zone = "us-east-1b"
 }
 
-resource "aws_subnet" "private_subnet_1b" {
+resource "aws_subnet" "subnet_private2_us_east_1b" {
   vpc_id            = aws_vpc.srikaanth_vpc.id
   cidr_block        = "10.0.144.0/20"
   availability_zone = "us-east-1b"
@@ -54,21 +54,19 @@ resource "aws_route_table" "public_route_table" {
 # NAT Gateways
 resource "aws_nat_gateway" "nat_gateway_1a" {
   allocation_id = aws_eip.nat_eip_1a.id
-  subnet_id     = aws_subnet.public_subnet_1a.id
+  subnet_id     = aws_subnet.subnet_public1_us_east_1a.id
 }
 
 resource "aws_eip" "nat_eip_1a" {
-  vpc = true
   domain   = "vpc"
 }
 
 resource "aws_nat_gateway" "nat_gateway_1b" {
   allocation_id = aws_eip.nat_eip_1b.id
-  subnet_id     = aws_subnet.public_subnet_1b.id
+  subnet_id     = aws_subnet.subnet_private2_us_east_1b.id
 }
 
 resource "aws_eip" "nat_eip_1b" {
-  vpc = true
   domain   = "vpc"
 }
 
