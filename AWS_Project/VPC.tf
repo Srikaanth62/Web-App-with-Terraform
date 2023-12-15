@@ -1,7 +1,7 @@
 # Provider configuration for AWS
-provider "aws" {
-  region = "us-east-1" # Change to your desired region
-}
+#provider "aws" {
+#  region = "us-east-1" # Change to your desired region
+#}
 
 # VPC creation
 resource "aws_vpc" "project_vpc" {
